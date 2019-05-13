@@ -1,4 +1,7 @@
 import com.sun.javafx.PlatformUtil;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +24,12 @@ public class HotelBookingTest {
 
     @FindBy(id = "travellersOnhome")
     private WebElement travellerSelection;
+    
+    @FindBy(xpath = "//input[@title='Check-in date']")
+    private WebElement checkInDateSelector;
+    
+    @FindBy(xpath = "//input[@title='Check-out date']")
+    private WebElement checkOutDateSelector;
 
     @Test
     public void shouldBeAbleToSearchForHotels() {
@@ -30,7 +39,11 @@ public class HotelBookingTest {
         hotelLink.click();
 
         localityTextBox.sendKeys("Indiranagar, Bangalore");
-
+        localityTextBox.sendKeys(Keys.ENTER);
+        
+        checkInDateSelector.sendKeys(Keys.ENTER);
+        checkOutDateSelector.sendKeys(Keys.ENTER);
+        
         new Select(travellerSelection).selectByVisibleText("1 room, 2 adults");
         searchButton.click();
 
