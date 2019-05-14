@@ -1,5 +1,6 @@
 import com.sun.javafx.PlatformUtil;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,8 +33,8 @@ public class FlightBookingTest {
         List<WebElement> originOptions = driver.findElement(By.id("ui-id-1")).findElements(By.tagName("li"));
         originOptions.get(0).click();
 
-        driver.findElement(By.id("toTag")).clear();
-        driver.findElement(By.id("toTag")).sendKeys("Delhi");
+        driver.findElement(By.xpath("//*[@id='ToTag']")).clear();
+        driver.findElement(By.xpath("//*[@id='ToTag']")).sendKeys("Delhi");
 
         //wait for the auto complete options to appear for the destination
 
@@ -42,7 +43,7 @@ public class FlightBookingTest {
         List<WebElement> destinationOptions = driver.findElement(By.id("ui-id-2")).findElements(By.tagName("li"));
         destinationOptions.get(0).click();
 
-        driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[3]/td[7]/a")).click();
+        driver.findElement(By.xpath("//*[@id='DepartDate']")).sendKeys(Keys.ENTER);
 
         //all fields filled in. Now click on search
         driver.findElement(By.id("SearchBtn")).click();
